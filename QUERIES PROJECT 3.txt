@@ -1,0 +1,33 @@
+/*FIRST QUERY*/
+SELECT Playlist.Name , count(PlaylistTrack.trackid)  "number of tracking numbers" 
+FROM Playlist
+JOIN PlaylistTrack ON Playlist.PlaylistId= PlaylistTrack.PlaylistId 
+GROUP BY Playlist.Name 
+ORDER BY "number of tracking numbers" DESC 
+LIMIT 6 ;
+
+
+/*second query*/
+SELECT Customer.FirstName , max(Invoice.Total)
+FROM Customer  
+JOIN Invoice  ON Customer.CustomerId = Invoice.CustomerId
+GROUP by 1
+ORDER by 2 DESC
+LIMIT 4 ;
+
+/*Third query*/
+SELECT A.Title, sum(T.UnitPrice) "sum of UnitPrice"
+FROM Album A  
+JOIN Track T  ON A.AlbumId = T.AlbumId
+GROUP by 1
+ORDER by 2 DESC
+LIMIT 4 ;
+
+/*Fourth query*/
+SELECT C.Country, avg(IL.Quantity) "avg of Quantity"
+FROM Customer C  
+JOIN Invoice i  ON C.CustomerId =  I.CustomerId
+JOIN InvoiceLine IL ON I.InvoiceId= IL.InvoiceId
+GROUP by 1
+ORDER by 1 
+LIMIT 4 ;
